@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Tree{
     static Scanner sc = null;
@@ -7,6 +8,7 @@ public class Tree{
         sc = new Scanner(System.in);
         Node root = createTree();
         Node.inorder(root);
+        Node.inorderStack(root);
     }
 
     // Root Node --> Left Node --> Right Node
@@ -44,5 +46,21 @@ class Node{
         inorder(root.left);
         System.out.print(root.data + " ");
         inorder(root.right);
+    }
+
+    // Left Node --> Root Node --> Right Node (using Stack)
+    static void inorderStack(Node root) {
+        Stack<Node> inrdrStack = new Stack<>();
+        Node currentNode = root;
+        System.out.println();
+        while (currentNode!=null || !inrdrStack.empty()){
+            while (currentNode != null){
+                inrdrStack.push(currentNode);
+                currentNode = currentNode.left;
+            }
+            currentNode = inrdrStack.pop();
+            System.out.print(currentNode.data + " ");
+            currentNode = currentNode.right;
+        }
     }
 }
