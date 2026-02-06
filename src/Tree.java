@@ -9,6 +9,7 @@ public class Tree{
         Node.inorder(root);
     }
 
+    // Root Node --> Left Node --> Right Node
     static Node createTree(){
         Node root = null;
 
@@ -37,6 +38,7 @@ class Node{
         this.data = data;
     }
 
+    // Left Node --> Root Node --> Right Node
     static void inorder(Node root) {
         if (root == null) return;
         inorder(root.left);
