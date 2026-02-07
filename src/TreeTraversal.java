@@ -1,34 +1,55 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class TreeTraversal {
 
     // ---------- Inorder (Recursive) ----------
-    static void inorder(Node root, ArrayList<Integer> result) {
+    static void inOrderTraversal(Node root, ArrayList<Integer> result) {
         if (root == null) return;
-        inorder(root.left, result);
+        inOrderTraversal(root.left, result);
         result.add(root.data);
-        inorder(root.right, result);
+        inOrderTraversal(root.right, result);
     }
 
     // ---------- Preorder ----------
-    static void preorder(Node root, ArrayList<Integer> result) {
+    static void preOrderTraversal(Node root, ArrayList<Integer> result) {
         if (root == null) return;
         result.add(root.data);
-        preorder(root.left, result);
-        preorder(root.right, result);
+        preOrderTraversal(root.left, result);
+        preOrderTraversal(root.right, result);
     }
 
     // ---------- Postorder ----------
-    static void postorder(Node root, ArrayList<Integer> result) {
+    static void postOrderTraversal(Node root, ArrayList<Integer> result) {
         if (root == null) return;
-        postorder(root.left, result);
-        postorder(root.right, result);
+        postOrderTraversal(root.left, result);
+        postOrderTraversal(root.right, result);
         result.add(root.data);
     }
 
+    static void levelOrderTraversal(Node root, ArrayList<Integer> result){
+        Queue<Node> treeNodeQueue = new LinkedList<>();
+
+        treeNodeQueue.add(root);
+
+        while(!treeNodeQueue.isEmpty()){
+            Node treeNode = treeNodeQueue.poll();
+            result.add(treeNode.data);
+
+            if (treeNode.left != null){
+                treeNodeQueue.add(treeNode.left);
+            }
+
+            if (treeNode.right != null){
+                treeNodeQueue.add(treeNode.right);
+            }
+        }
+    }
+
     // ---------- Inorder using Stack ----------
-    static void inorderStack(Node root, ArrayList<Integer> result) {
+    static void inOrderTraversalStack(Node root, ArrayList<Integer> result) {
         Stack<Node> stack = new Stack<>();
         Node curr = root;
 
